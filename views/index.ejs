@@ -1,0 +1,18 @@
+<h1>Welcome to my blog site</h1>
+
+<div id="createPost">
+    <a href="/create">Create a New Article</a>
+</div>
+
+<div id="allPost">
+    <h3>Articles</h3>
+    <ul>
+        <% if (locals.title && locals.content) { %> 
+        <li>
+            <h4><%= title %></h4>
+            <p><%= dateCreated %></p>   
+            <p><%= content %></p>    
+        </li>
+        <% } %>
+    </ul>
+</div>
