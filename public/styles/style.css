@@ -1,4 +1,6 @@
-
+body {
+    font-size: 1rem;
+}
 header > a > span {
     color: #F4EDD5;
 }
@@ -25,4 +27,30 @@ header > a > span {
 .btn-light {
     background-color: #FCC208;
     border: none;
+} 
+
+/* posts */
+.list-group {
+    text-align: left;
+    width: 70%;
+}
+.list-group > ul {
+    list-style: none;
+}
+.list-group-item {
+    background-color: transparent;
+    color:  #F4EDD5;
+    border: solid #495057 1px;
+    margin-top: -1px;
+}
+.list-group-item:hover {
+    background-color: #3b3f44;
+    opacity: 80%;
+    color: #F4EDD5;
+}
+.list-group-item p {
+    font-size: 0.9rem;
+}
+small {
+    font-size: 0.9rem;
 }
