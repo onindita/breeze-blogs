@@ -1,87 +1,99 @@
 import express from "express";
 import bodyParser from "body-parser";
-import fs from "fs";
-import path from "path";
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 
+const __dirname = dirname(fileURLToPath(import.meta.url));
 const app = express();
 const port = 3000;
 let articleId = 3;
 let arrayOfArticle = [];
 
-app.use(express.static("public"));
+app.use(express.static("public/"));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
-    res.render("index.ejs");
-})
+  console.log(__dirname);
+  res.render(__dirname + "/views/index.ejs");
+});
 app.get("/posts", (req, res) => {
-    res.render("posts.ejs", {
-        array: arrayOfArticle
-    });
-})
+  res.render("posts.ejs", {
+    array: arrayOfArticle,
+  });
+});
 
 app.get("/article/:id", (req, res) => {
-    let id = req.params.id;
-    let articles = arrayOfArticle.filter(a => a.id == id);
+  let id = req.params.id;
+  let articles = arrayOfArticle.filter((a) => a.id == id);
 
-    res.render("article.ejs", {
-        article: articles[0]
-    });
-})
+  res.render("article.ejs", {
+    article: articles[0],
+  });
+});
 
 app.get("/delete/:id", (req, res) => {
-    arrayOfArticle = arrayOfArticle.filter(a => a.id != req.params.id);
-    res.redirect("/posts");
-})
+  arrayOfArticle = arrayOfArticle.filter((a) => a.id != req.params.id);
+  res.redirect("/posts");
+});
 
 app.get("/create", (req, res) => {
-    res.render("create.ejs");
-})
+  res.render(__dirname + "/views/create.ejs");
+});
 
 app.get("/update/:id", (req, res) => {
-    let articles = arrayOfArticle.filter(a => a.id == req.params.id);
-    res.render("update.ejs", {
-        article: articles[0]
-    })
-})
+  let articles = arrayOfArticle.filter((a) => a.id == req.params.id);
+  res.render("update.ejs", {
+    article: articles[0],
+  });
+});
 
 app.post("/save/:id", (req, res) => {
-    const date = new Date();
-    let today = date.getMonth() + "/" + date.getDate() + "/" + date.getFullYear();  
-    
-    arrayOfArticle = arrayOfArticle.filter(a => a.id != req.params.id);
-  
-    arrayOfArticle.push({id: parseInt(req.params.id), title: req.body.title, content: req.body.content, date: today});
+  const date = new Date();
+  let today = date.getMonth() + "/" + date.getDate() + "/" + date.getFullYear();
 
-    res.redirect(`/article/${ req.params.id }`);
-})
+  arrayOfArticle = arrayOfArticle.filter((a) => a.id != req.params.id);
+
+  arrayOfArticle.push({
+    id: parseInt(req.params.id),
+    title: req.body.title,
+    content: req.body.content,
+    date: today,
+  });
+
+  res.redirect(`/article/${req.params.id}`);
+});
 
 app.post("/submit", (req, res) => {
-    const date = new Date();
-    let today = date.getMonth() + "/" + date.getDate() + "/" + date.getFullYear();  
+  const date = new Date();
+  let today = date.getMonth() + "/" + date.getDate() + "/" + date.getFullYear();
 
-    arrayOfArticle.push({id: articleId++, title: req.body.title, content: req.body.content, date: today});
-
-    res.redirect("/posts");
-})
+  arrayOfArticle.push({
+    id: articleId++,
+    title: req.body.title,
+    content: req.body.content,
+    date: today,
+  });
+  console.log(arrayOfArticle);
+  res.redirect("/posts");
+});
 
 app.get("/about", (req, res) => {
-    res.render("about.ejs");
-})
+  res.render(__dirname + "/views/about.ejs");
+});
 
 app.get("/contact", (req, res) => {
-    res.render("contact.ejs");
-})
+  res.render(__dirname + "/views/contact.ejs");
+});
 
 app.listen(port, () => {
-    console.log(`Server started at port ${port}...`);
-})
+  console.log(`Server started at port ${port}...`);
+});
 
 // Default articles
 arrayOfArticle.push({
-    id: 0,
-    title: "Alien Truth",
-    content: `If there were intelligent beings elsewhere in the universe, they'd share certain truths in common with us. The truths of mathematics would be the same, because they're true by definition. Ditto for the truths of physics; the mass of a carbon atom would be the same on their planet. But I think we'd share other truths with aliens besides the truths of math and physics, and that it would be worthwhile to think about what these might be.
+  id: 0,
+  title: "Alien Truth",
+  content: `If there were intelligent beings elsewhere in the universe, they'd share certain truths in common with us. The truths of mathematics would be the same, because they're true by definition. Ditto for the truths of physics; the mass of a carbon atom would be the same on their planet. But I think we'd share other truths with aliens besides the truths of math and physics, and that it would be worthwhile to think about what these might be.
 
 For example, I think we'd share the principle that a controlled experiment testing some hypothesis entitles us to have proportionally increased belief in it. It seems fairly likely, too, that it would be true for aliens that one can get better at something by practicing. We'd probably share Occam's razor. There doesn't seem anything specifically human about any of these ideas.
 
@@ -99,13 +111,18 @@ Whatever we call it, the attempt to discover alien truths would be a worthwhile 
 
 Source: https://www.paulgraham.com/alien.html 
 `,
-date: new Date().getMonth() + "/" + new Date().getDate() + "/" + new Date().getFullYear() 
+  date:
+    new Date().getMonth() +
+    "/" +
+    new Date().getDate() +
+    "/" +
+    new Date().getFullYear(),
 });
 
 arrayOfArticle.push({
-    id: 1,
-    title: "The Real Reason to End the Death Penalty",
-    content: `When intellectuals talk about the death penalty, they talk about things like whether it's permissible for the state to take someone's life, whether the death penalty acts as a deterrent, and whether more death sentences are given to some groups than others. But in practice the debate about the death penalty is not about whether it's ok to kill murderers. It's about whether it's ok to kill innocent people, because at least 4% of people on death row are innocent.
+  id: 1,
+  title: "The Real Reason to End the Death Penalty",
+  content: `When intellectuals talk about the death penalty, they talk about things like whether it's permissible for the state to take someone's life, whether the death penalty acts as a deterrent, and whether more death sentences are given to some groups than others. But in practice the debate about the death penalty is not about whether it's ok to kill murderers. It's about whether it's ok to kill innocent people, because at least 4% of people on death row are innocent.
 
 When I was a kid I imagined that it was unusual for people to be convicted of crimes they hadn't committed, and that in murder cases especially this must be very rare. Far from it. Now, thanks to organizations like the Innocence Project, we see a constant stream of stories about murder convictions being overturned after new evidence emerges. Sometimes the police and prosecutors were just very sloppy. Sometimes they were crooked, and knew full well they were convicting an innocent person.
 
@@ -131,12 +148,17 @@ This circus of incompetence and dishonesty is the real issue with the death pena
 
 Source: https://www.paulgraham.com/real.html 
 `,
-    date: new Date().getMonth() + "/" + new Date().getDate() + "/" + new Date().getFullYear()
+  date:
+    new Date().getMonth() +
+    "/" +
+    new Date().getDate() +
+    "/" +
+    new Date().getFullYear(),
 });
 arrayOfArticle.push({
-    id: 2,
-    title: "The Four Quadrants of Conformism",
-    content: `One of the most revealing ways to classify people is by the degree and aggressiveness of their conformism. Imagine a Cartesian coordinate system whose horizontal axis runs from conventional-minded on the left to independent-minded on the right, and whose vertical axis runs from passive at the bottom to aggressive at the top. The resulting four quadrants define four types of people. Starting in the upper left and going counter-clockwise: aggressively conventional-minded, passively conventional-minded, passively independent-minded, and aggressively independent-minded.
+  id: 2,
+  title: "The Four Quadrants of Conformism",
+  content: `One of the most revealing ways to classify people is by the degree and aggressiveness of their conformism. Imagine a Cartesian coordinate system whose horizontal axis runs from conventional-minded on the left to independent-minded on the right, and whose vertical axis runs from passive at the bottom to aggressive at the top. The resulting four quadrants define four types of people. Starting in the upper left and going counter-clockwise: aggressively conventional-minded, passively conventional-minded, passively independent-minded, and aggressively independent-minded.
 
 I think that you'll find all four types in most societies, and that which quadrant people fall into depends more on their own personality than the beliefs prevalent in their society. [1]
 
@@ -159,5 +181,10 @@ The four types are not equally common. There are more passive people than aggres
 Since one's quadrant depends more on one's personality than the nature of the rules, most people would occupy the same quadrant even if they'd grown up in a quite different society.
 
 Source: https://www.paulgraham.com/conformism.html `,
-    date: new Date().getMonth() + "/" + new Date().getDate() + "/" + new Date().getFullYear()
+  date:
+    new Date().getMonth() +
+    "/" +
+    new Date().getDate() +
+    "/" +
+    new Date().getFullYear(),
 });

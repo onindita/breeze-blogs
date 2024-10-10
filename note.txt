@@ -4,3 +4,6 @@ Pink - #F2D7D9
 Purple - #D3CEDF
 Light Blue - #9CB4CC
 Teal - #748DA6
+
+
+href="/delete/<%= article.id %>"

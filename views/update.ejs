@@ -1,10 +1,63 @@
-<h2>Update the Article</h2>
-<form action="/save/<%= article.id %>" method="POST">
-    <% if (locals.article) { %>
-    <input name="title" type="text" class="post-input" value="<%= article.title %>" />
-    <textarea name="content" class="post-input"><%= article.content %></textarea>
-    <input type="submit" value="SUBMIT" />
-    <% } %>
-  </form>
+<%- include("partials/header.ejs") %>
 
-  
+<h2>Update the Article</h2>
+<!-- <form action="/save/<%= article.id %>" method="POST">
+  <% if (locals.article) { %>
+  <input
+    name="title"
+    type="text"
+    class="post-input"
+    value="<%= article.title %>"
+  />
+  <textarea name="content" wrap="hard" class="post-input">
+<%= article.content %></textarea
+  >
+  <input type="submit" value="SUBMIT" />
+  <% } %>
+</form> -->
+
+<div class="form">
+  <section class="w-100 p-4 text-center d-flex justify-content-center">
+    <% if (locals.article) { %>
+    <form action="/save/<%= article.id %>" method="POST" style="width: 70%">
+      <!-- Title input -->
+      <div class="form-outline mb-4" data-mdb-input-initialized="true">
+        <input
+          type="text"
+          name="title"
+          id="form4Example1"
+          class="form-control"
+          value="<%= article.title %>"
+        />
+      </div>
+      <!-- Details input -->
+      <div
+        data-mdb-input-init=""
+        class="form-outline mb-4"
+        data-mdb-input-initialized="true"
+      >
+        <textarea
+          name="content"
+          class="form-control"
+          id="form4Example3"
+          rows="15"
+        >
+          <%= article.content %>
+        </textarea>
+      </div>
+
+      <!-- Submit button -->
+      <input
+        type="submit"
+        data-mdb-button-init=""
+        data-mdb-ripple-init=""
+        class="btn btn-md btn-light fw-bold mx-1"
+        data-mdb-button-initialized="true"
+        value="Save"
+      />
+    </form>
+    <% } %>
+  </section>
+</div>
+
+<%- include("partials/footer.ejs") %>

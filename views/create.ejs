@@ -1,8 +1,45 @@
-<h2>Article</h2>
-<form action="/submit" method="POST">
-    <input name="title" type="text" class="post-input" placeholder="Title" />
-    <textarea name="content" class="post-input" placeholder="Details"></textarea>
-    <input type="submit" value="SUBMIT" />
-  </form>
+<%- include("partials/header.ejs") %>
 
-  
+<h2>Create your post</h2>
+
+<div class="form">
+  <section class="w-100 p-4 text-center d-flex justify-content-center">
+    <form action="/submit" method="POST" style="width: 70%">
+      <!-- Title input -->
+      <div class="form-outline mb-4" data-mdb-input-initialized="true">
+        <input
+          type="text"
+          name="title"
+          id="form4Example1"
+          class="form-control"
+          placeholder="Title"
+        />
+      </div>
+      <!-- Details input -->
+      <div
+        data-mdb-input-init=""
+        class="form-outline mb-4"
+        data-mdb-input-initialized="true"
+      >
+        <textarea
+          name="content"
+          class="form-control"
+          id="form4Example3"
+          rows="15"
+          placeholder="Details"
+        ></textarea>
+      </div>
+
+      <!-- Submit button -->
+      <input
+        type="submit"
+        data-mdb-button-init=""
+        data-mdb-ripple-init=""
+        class="btn btn-md btn-light fw-bold mx-1"
+        data-mdb-button-initialized="true"
+        value="Submit"
+      />
+    </form>
+  </section>
+</div>
+<%- include("partials/footer.ejs") %>

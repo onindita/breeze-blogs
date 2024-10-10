@@ -1,16 +1,24 @@
-<% if (locals.article) { %>
-
-
-<p id="date"><%= article.date %></p>
-
-
-<h2><%= article.title %></h2>
-
-<p id="articleContent">
-    <%= article.content %>
-</p>
-
-<div id="update"><a href="/update/<%= article.id %>">Update</a></div>
-<div id="delete"><a href="/delete/<%= article.id %>">Delete</a></div>
-
-<% } %>
+<%- include("partials/header.ejs") %> <% if (locals.article) { %>
+<div class="container post">
+  <h2><%= article.title %></h2>
+  <p id="date"><%= article.date %></p>
+  <br />
+  <% const paragraphs = article.content.split('\n') %> <% for(let i = 0; i <
+  paragraphs.length; i ++) { %>
+  <p id="articleContent"><%= paragraphs[i] %></p>
+  <% } %>
+  <div class="col-12 offset-4 py-5 column-gap-5">
+    <a
+      class="btn btn-md btn-light fw-bold mx-1"
+      href="/update/<%= article.id %>"
+      >Update</a
+    >
+    <a
+      class="btn btn-md btn-danger fw-bold mx-1"
+      href="/delete/<%= article.id %>"
+      >Delete</a
+    >
+  </div>
+  <% } %>
+</div>
+<%- include("partials/footer.ejs") %>

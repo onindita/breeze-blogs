@@ -1,56 +1,94 @@
 body {
-    font-size: 1rem;
+  font-size: 1rem;
 }
 header > a > span {
-    color: #F4EDD5;
+  color: #f4edd5;
 }
 
 .nav-link {
-    color: #FCC208;
+  color: #fcc208;
 }
 
 .nav-link:hover {
-    color: #F4EDD5;
-    cursor: pointer;
+  color: #f4edd5;
+  cursor: pointer;
 }
 .nav {
-    --bs-nav-link-hover-color: #FCC208;
+  --bs-nav-link-hover-color: #fcc208;
 }
 .nav-pills > .nav-item > a.active {
-    color: #F4EDD5;
-    background-color: transparent;
-    /* border-bottom: solid #F4EDD5 2px; */
+  color: #f4edd5;
+  background-color: transparent;
+  /* border-bottom: solid #F4EDD5 2px; */
 }
 .lead {
-    color: #F4EDD5;
+  color: #f4edd5;
 }
 .btn-light {
-    background-color: #FCC208;
-    border: none;
-} 
-
+  background-color: #fcc208;
+  border: none;
+}
+.btn-light:hover {
+  background-color: #fcc208;
+  border: none;
+  color: #f4edd5;
+}
+.btn-danger {
+  color: black;
+}
+.btn-danger:hover {
+  color: #f4edd5;
+}
 /* posts */
 .list-group {
-    text-align: left;
-    width: 70%;
+  text-align: left;
+  width: 70%;
 }
 .list-group > ul {
-    list-style: none;
+  list-style: none;
 }
 .list-group-item {
-    background-color: transparent;
-    color:  #F4EDD5;
-    border: solid #495057 1px;
-    margin-top: -1px;
+  background-color: transparent;
+  color: #f4edd5;
+  border: solid #495057 1px;
+  margin-top: -1px;
 }
 .list-group-item:hover {
-    background-color: #3b3f44;
-    opacity: 80%;
-    color: #F4EDD5;
+  background-color: #3b3f44;
+  opacity: 80%;
+  color: #f4edd5;
 }
 .list-group-item p {
-    font-size: 0.9rem;
+  font-size: 0.9rem;
 }
 small {
-    font-size: 0.9rem;
+  font-size: 0.9rem;
+}
+
+/* article */
+textarea {
+  white-space: pre-line;
+  white-space: pre-wrap;
+  border: solid red 2px;
+}
+
+.post {
+  text-align: left;
+}
+
+.update-delete {
+  border: solid red 2px;
+  margin: 0 auto;
+}
+
+.form-outline .form-control ~ .form-notch {
+  display: flex;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  text-align: left;
+  pointer-events: none;
 }
