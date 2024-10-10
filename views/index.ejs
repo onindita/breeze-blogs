@@ -1,4 +1,4 @@
-<%- include("partials/header.ejs") %>
+
 <h1>Welcome to my blog site</h1>
 
 <div id="createPost">
@@ -8,13 +8,12 @@
 <div id="allPost">
     <h3>Articles</h3>
     <ul>
-        <% if (locals.title && locals.content) { %> 
+        <% if (locals.array) { %>
+            <% for(let i = 0; i < array.length; i++) { %>  
         <li>
-            <h4><%= title %></h4>
-            <p><%= dateCreated %></p>   
-            <p><%= content %></p>    
+            <h4><a href='article/<%= array[i].id %>'><%= array[i].title %></a></h4>
         </li>
-        <% } %>
+        <% }} %>
     </ul>
 </div>
-<%- include("partials/footer.ejs") %>
+

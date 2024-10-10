@@ -1,10 +1,16 @@
-<p id="date">October 2, 2024</p>
+<% if (locals.article) { %>
 
-<h2>Article title</h2>
+
+<p id="date"><%= article.date %></p>
+
+
+<h2><%= article.title %></h2>
 
 <p id="articleContent">
-    In recent years, the landscape of work has undergone a seismic shift. The COVID-19 pandemic accelerated trends that were already in motion, leading to the widespread adoption of remote work. What began as a temporary solution has evolved into a permanent fixture for many organizations and employees. This article explores the implications of this transformation, its benefits, challenges, and what the future may hold.
+    <%= article.content %>
 </p>
 
-<button id="update">Update</button>
-<button id="delete">Delete</button>
+<div id="update"><a href="/update/<%= article.id %>">Update</a></div>
+<div id="delete"><a href="/delete/<%= article.id %>">Delete</a></div>
+
+<% } %>
