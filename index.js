@@ -12,7 +12,10 @@ app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
-    res.render("index.ejs", {
+    res.render("index.ejs");
+})
+app.get("/posts", (req, res) => {
+    res.render("posts.ejs", {
         array: arrayOfArticle
     });
 })
@@ -28,7 +31,7 @@ app.get("/article/:id", (req, res) => {
 
 app.get("/delete/:id", (req, res) => {
     arrayOfArticle = arrayOfArticle.filter(a => a.id != req.params.id);
-    res.redirect("/");
+    res.redirect("/posts");
 })
 
 app.get("/create", (req, res) => {
@@ -59,7 +62,7 @@ app.post("/submit", (req, res) => {
 
     arrayOfArticle.push({id: articleId++, title: req.body.title, content: req.body.content, date: today});
 
-    res.redirect("/");
+    res.redirect("/posts");
 })
 
 app.get("/about", (req, res) => {

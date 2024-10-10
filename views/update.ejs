@@ -1,8 +1,8 @@
 <h2>Update the Article</h2>
 <form action="/save/<%= article.id %>" method="POST">
     <% if (locals.article) { %>
-    <input name="title" type="text" class="post-input" placeholder="<%= article.title %>" />
-    <textarea name="content" class="post-input" placeholder="<%= article.content %>"></textarea>
+    <input name="title" type="text" class="post-input" value="<%= article.title %>" />
+    <textarea name="content" class="post-input"><%= article.content %></textarea>
     <input type="submit" value="SUBMIT" />
     <% } %>
   </form>

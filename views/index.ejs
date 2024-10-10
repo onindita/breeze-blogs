@@ -1,19 +1,16 @@
-
-<h1>Welcome to my blog site</h1>
-
-<div id="createPost">
-    <a href="/create">Create a New Article</a>
-</div>
-
-<div id="allPost">
-    <h3>Articles</h3>
-    <ul>
-        <% if (locals.array) { %>
-            <% for(let i = 0; i < array.length; i++) { %>  
-        <li>
-            <h4><a href='article/<%= array[i].id %>'><%= array[i].title %></a></h4>
-        </li>
-        <% }} %>
-    </ul>
-</div>
+<%- include("partials/header.ejs") %>
+    
+<main class="px-3">
+    <div class="banner">
+        <img class="img-fluid" src="../images/banner.jpg">
+    </div>
+    <p class="lead mt-5">
+        Whether you’re passionate about travel, food, tech, or personal experiences, this is the place to share your voice and connect with like-minded individuals.
+    </p>
+    <p class="lead pt-3 ">
+        <a href="/create" class="btn btn-lg btn-light fw-bold">Unleash Your Voice</a>
+    </p>
+</main>
+    
+<%- include("partials/footer.ejs") %>
 

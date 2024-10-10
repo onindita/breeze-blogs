@@ -1,0 +1,12 @@
+
+<div id="allPost">
+    <h3>Articles</h3>
+    <ul>
+      <% if (locals.array) { %>
+          <% for(let i = 0; i < array.length; i++) { %>  
+      <li>
+          <h4><a href='article/<%= array[i].id %>'><%= array[i].title %></a></h4>
+      </li>
+      <% }} %>
+  </ul>
+  </div> 
