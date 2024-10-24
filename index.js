@@ -85,6 +85,10 @@ app.get("/contact", (req, res) => {
   res.render(__dirname + "/views/contact.ejs");
 });
 
+app.post("/contact-submit", (req, res) => {
+  res.redirect("/");
+});
+
 app.listen(port, () => {
   console.log(`Server started at port ${port}...`);
 });

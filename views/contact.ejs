@@ -1,20 +1,53 @@
 <%- include("partials/header.ejs") %>
 <div class="container">
-  <h1>Contact US</h1>
-  <form>
-    <input name="name" type="text" class="feedback-input" placeholder="Name" />
-    <input
-      name="email"
-      type="text"
-      class="feedback-input"
-      placeholder="Email"
-    />
-    <textarea
-      name="text"
-      class="feedback-input"
-      placeholder="Comment"
-    ></textarea>
-    <input type="submit" value="SUBMIT" />
-  </form>
+  <h1>Contact Us</h1>
+  <div class="form">
+    <section class="w-100 p-4 text-center d-flex justify-content-center">
+      <form action="/contact-submit" method="POST" style="width: 70%">
+        <!-- Name input -->
+        <div class="form-outline mb-4" data-mdb-input-initialized="true">
+          <input
+            type="text"
+            name="name"
+            class="form-control"
+            placeholder="Name"
+          />
+        </div>
+        <!-- Email input -->
+        <div class="form-outline mb-4" data-mdb-input-initialized="true">
+          <input
+            type="text"
+            name="email"
+            class="form-control"
+            placeholder="Email"
+          />
+        </div>
+        <!-- Details input -->
+        <div
+          data-mdb-input-init=""
+          class="form-outline mb-4"
+          data-mdb-input-initialized="true"
+        >
+          <textarea
+            name="content"
+            class="form-control"
+            id="form4Example3"
+            rows="7"
+            placeholder="Comment"
+          ></textarea>
+        </div>
+
+        <!-- Submit button -->
+        <input
+          type="submit"
+          data-mdb-button-init=""
+          data-mdb-ripple-init=""
+          class="btn btn-md btn-light fw-bold mx-1"
+          data-mdb-button-initialized="true"
+          value="Submit"
+        />
+      </form>
+    </section>
+  </div>
 </div>
 <%- include("partials/footer.ejs") %>
